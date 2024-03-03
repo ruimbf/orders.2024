@@ -1,6 +1,6 @@
-@Orders.Backend_HostAddress = http://localhost:5237
+@Orders.Backend_HostAddress = http://localhost:7216
 
-GET {{Orders.Backend_HostAddress}}/weatherforecast/
+GET {{Orders.Backend_HostAddress}}/countries/
 Accept: application/json
 
 ###
