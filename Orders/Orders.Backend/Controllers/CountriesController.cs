@@ -2,13 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Orders.Backend.Data;
+using Orders.Backend.UnitsOfWork.Interfaces;
 using Orders.Shared.Entities;
 
 namespace Orders.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CountriesController : ControllerBase
+    public class CountriesController : GenericController<Country>
+    {
+        public CountriesController(IGenericUnitOfWork<Country> unitOfWork) : base(unitOfWork)
+        {
+        }
+    }
+}
+
+/*
+ : ControllerBase
     {
         private readonly DataContext _context;
 
@@ -64,5 +74,5 @@ namespace Orders.Backend.Controllers
             return NoContent();
         }
 
-    }
-}
+ 
+ */
