@@ -11,15 +11,31 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 // new
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
-
+builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
-
 // end.NEW
 
+
 var app = builder.Build();
+
+
+//new
+SeedData(app);
+
+void SeedData(WebApplication app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopedFactory!.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<SeedDb>();
+        service!.SeedAsync().Wait();
+    }
+}
+// end.NEW
 
 
 // new
