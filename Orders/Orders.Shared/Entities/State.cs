@@ -22,6 +22,6 @@ namespace Orders.Shared.Entities
 
         [Display(Name = "Cidades")]
         public ICollection<City>? Cities { get; set; }
-        public int CitiesNumber => Cities== null | Cities!.Count == 0 ? 0 : Cities.Count;
+        public int CitiesNumber => (Cities == null || Cities!.Count == 0) ? 0 : Cities.Count;
     }
 }

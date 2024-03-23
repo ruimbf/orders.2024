@@ -1,5 +1,4 @@
-﻿
-using Orders.Shared.Entities;
+﻿using Orders.Shared.Entities;
 
 namespace Orders.Backend.Data
 {
@@ -18,7 +17,6 @@ namespace Orders.Backend.Data
 
             await CkeckCountriesAsync();
             await CkeckCategoriesAsync();
-
         }
 
         private async Task CkeckCategoriesAsync()
@@ -35,12 +33,86 @@ namespace Orders.Backend.Data
 
         private async Task CkeckCountriesAsync()
         {
-            if (!_context.Countries.Any()) 
+            if (!_context.Countries.Any())
             {
-                _context.Countries.Add(new Country { Name = "Portugal" });
-                _context.Countries.Add(new Country { Name = "Espanha" });
-                _context.Countries.Add(new Country { Name = "França" });
-                _context.Countries.Add(new Country { Name = "Itália" });
+                _context.Countries.Add(new Country()
+                {
+                    Name = "Portugal",
+                    States =
+                    [
+                        new State()
+                        {
+                            Name = "Lisboa",
+                            Cities =
+                            [
+                                new City { Name = "Lisboa" },
+                                new City { Name = "Sintra" },
+                                new City { Name = "Cascais" },
+                                new City { Name = "Oeiras" },
+                            ]
+                        },
+                        new State()
+                        {
+                            Name = "Viseu",
+                            Cities =
+                            [
+                                new City { Name = "Viseu" },
+                                new City { Name = "São Pedro do Sul" },
+                                new City { Name = "Vouzela" },
+                                new City { Name = "Oliveira de Frades" },
+                            ]
+                        },
+                    ],
+                });
+
+                _context.Countries.Add(new Country()
+                {
+                    Name = "Espanha",
+                    States =
+                    [
+                        new State()
+                        {
+                            Name = "Madrid",
+                            Cities =
+                            [
+                                new City { Name = "Madrid" },
+                            ]
+                        },
+                    ],
+                });
+
+                _context.Countries.Add(new Country()
+                {
+                    Name = "França",
+                    States =
+                    [
+                        new State()
+                        {
+                            Name = "Paris",
+                            Cities =
+                            [
+                                new City { Name = "Paris" },
+                            ]
+                        },
+                    ],
+                });
+
+                _context.Countries.Add(new Country()
+                {
+                    Name = "Itália",
+                    States =
+                    [
+                        new State()
+                        {
+                            Name = "Roma",
+                            Cities =
+                            [
+                                new City { Name = "Roma" },
+                            ]
+                        }
+                    ],
+                });
+
             }
             await _context.SaveChangesAsync();
         }

@@ -15,6 +15,6 @@ namespace Orders.Shared.Entities
 
         [Display(Name = "Distritos")]
         public ICollection<State>? States { get; set; }
-        public int StatesNumber => States == null | States!.Count == 0 ? 0 : States.Count;
+        public int StatesNumber => (States == null || States!.Count == 0) ? 0 : States.Count;
     }
 }
