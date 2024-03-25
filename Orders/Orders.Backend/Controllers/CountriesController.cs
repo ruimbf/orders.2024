@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using Orders.Backend.Data;
 using Orders.Backend.UnitsOfWork.Interfaces;
 using Orders.Shared.Entities;
 
@@ -22,15 +19,15 @@ namespace Orders.Backend.Controllers
         public override async Task<IActionResult> GetAsync(int id)
         {
             var response = await _countriesUnitOfWork.GetAsync(id);
-            if (response.WasSuccess) 
-            { 
+            if (response.WasSuccess)
+            {
                 return Ok(response.Result);
             }
             return NotFound(response.Message);
         }
 
         [HttpGet]
-        public override async  Task<IActionResult> GetAsync()
+        public override async Task<IActionResult> GetAsync()
         {
             var response = await _countriesUnitOfWork.GetAsync();
             if (response.WasSuccess)
@@ -39,7 +36,6 @@ namespace Orders.Backend.Controllers
             }
             return BadRequest();
         }
-
     }
 }
 
@@ -86,7 +82,6 @@ namespace Orders.Backend.Controllers
             return NoContent();
         }
 
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
@@ -100,5 +95,4 @@ namespace Orders.Backend.Controllers
             return NoContent();
         }
 
- 
  */
