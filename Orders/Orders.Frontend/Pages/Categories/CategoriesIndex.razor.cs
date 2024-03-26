@@ -57,6 +57,7 @@ namespace Orders.Frontend.Pages.Categories
                     var messageError = await responseHttp.GetErrorMessageAsync();
                     await SweetAlertService.FireAsync("Erro", messageError, SweetAlertIcon.Error);
                 }
+                return;
             }
 
             await LoadAsync();

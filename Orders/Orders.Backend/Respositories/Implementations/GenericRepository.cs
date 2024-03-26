@@ -43,7 +43,6 @@ namespace Orders.Backend.Respositories.Implementations
             var row = await _entity.FindAsync(id);
             if (row == null)
             {
-                await _context.SaveChangesAsync();
                 return new ActionResponse<T>
                 {
                     WasSuccess = false,

@@ -72,7 +72,7 @@ namespace Orders.Backend.Controllers
                 return NoContent();
             }
 
-            return NotFound(action.Message);
+            return BadRequest(action.Message);
         }
 
 
